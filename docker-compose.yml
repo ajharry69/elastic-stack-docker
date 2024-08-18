@@ -95,7 +95,7 @@ services:
         tail -f &>/dev/null;
       '
     healthcheck:
-      test: ["CMD-SHELL", "[ -f config/certs/es01/es01.crt ] && [ -f config/certs/es02/es02.crt ] && [ -f config/certs/es03/es03.crt ]"]
+      test: [ "CMD-SHELL", "[ -f config/certs/es01/es01.crt ] && [ -f config/certs/es02/es02.crt ] && [ -f config/certs/es03/es03.crt ]" ]
       interval: 1s
       timeout: 5s
       retries: 120
@@ -113,23 +113,23 @@ services:
     ports:
       - ${ES_PORT}:9200
     environment:
-      - node.name=es01
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es02,es03
-      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=true
-      - xpack.security.http.ssl.enabled=true
-      - xpack.security.http.ssl.key=certs/es01/es01.key
-      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
-      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.enabled=true
-      - xpack.security.transport.ssl.key=certs/es01/es01.key
-      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
-      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.verification_mode=certificate
-      - xpack.license.self_generated.type=${LICENSE}
+      node.name: "es01"
+      cluster.name: "${CLUSTER_NAME}"
+      cluster.initial_master_nodes: "es01,es02,es03"
+      discovery.seed_hosts: "es02,es03"
+      ELASTIC_PASSWORD: "${ELASTIC_PASSWORD}"
+      bootstrap.memory_lock: "true"
+      xpack.security.enabled: "true"
+      xpack.security.http.ssl.enabled: "true"
+      xpack.security.http.ssl.key: "certs/es01/es01.key"
+      xpack.security.http.ssl.certificate: "certs/es01/es01.crt"
+      xpack.security.http.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.enabled: "true"
+      xpack.security.transport.ssl.key: "certs/es01/es01.key"
+      xpack.security.transport.ssl.certificate: "certs/es01/es01.crt"
+      xpack.security.transport.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.verification_mode: "certificate"
+      xpack.license.self_generated.type: "${LICENSE}"
     mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
@@ -153,23 +153,23 @@ services:
       - certs:/usr/share/elasticsearch/config/certs
       - esdata02:/usr/share/elasticsearch/data
     environment:
-      - node.name=es02
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es01,es03
-      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=true
-      - xpack.security.http.ssl.enabled=true
-      - xpack.security.http.ssl.key=certs/es02/es02.key
-      - xpack.security.http.ssl.certificate=certs/es02/es02.crt
-      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.enabled=true
-      - xpack.security.transport.ssl.key=certs/es02/es02.key
-      - xpack.security.transport.ssl.certificate=certs/es02/es02.crt
-      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.verification_mode=certificate
-      - xpack.license.self_generated.type=${LICENSE}
+      node.name: "es02"
+      cluster.name: "${CLUSTER_NAME}"
+      cluster.initial_master_nodes: "es01,es02,es03"
+      discovery.seed_hosts: "es01,es03"
+      ELASTIC_PASSWORD: "${ELASTIC_PASSWORD}"
+      bootstrap.memory_lock: "true"
+      xpack.security.enabled: "true"
+      xpack.security.http.ssl.enabled: "true"
+      xpack.security.http.ssl.key: "certs/es02/es02.key"
+      xpack.security.http.ssl.certificate: "certs/es02/es02.crt"
+      xpack.security.http.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.enabled: "true"
+      xpack.security.transport.ssl.key: "certs/es02/es02.key"
+      xpack.security.transport.ssl.certificate: "certs/es02/es02.crt"
+      xpack.security.transport.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.verification_mode: "certificate"
+      xpack.license.self_generated.type: "${LICENSE}"
     mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
@@ -193,23 +193,23 @@ services:
       - certs:/usr/share/elasticsearch/config/certs
       - esdata03:/usr/share/elasticsearch/data
     environment:
-      - node.name=es03
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es01,es02
-      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=true
-      - xpack.security.http.ssl.enabled=true
-      - xpack.security.http.ssl.key=certs/es03/es03.key
-      - xpack.security.http.ssl.certificate=certs/es03/es03.crt
-      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.enabled=true
-      - xpack.security.transport.ssl.key=certs/es03/es03.key
-      - xpack.security.transport.ssl.certificate=certs/es03/es03.crt
-      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
-      - xpack.security.transport.ssl.verification_mode=certificate
-      - xpack.license.self_generated.type=${LICENSE}
+      node.name: "es03"
+      cluster.name: "${CLUSTER_NAME}"
+      cluster.initial_master_nodes: "es01,es02,es03"
+      discovery.seed_hosts: "es01,es02"
+      ELASTIC_PASSWORD: "${ELASTIC_PASSWORD}"
+      bootstrap.memory_lock: "true"
+      xpack.security.enabled: "true"
+      xpack.security.http.ssl.enabled: "true"
+      xpack.security.http.ssl.key: "certs/es03/es03.key"
+      xpack.security.http.ssl.certificate: "certs/es03/es03.crt"
+      xpack.security.http.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.enabled: "true"
+      xpack.security.transport.ssl.key: "certs/es03/es03.key"
+      xpack.security.transport.ssl.certificate: "certs/es03/es03.crt"
+      xpack.security.transport.ssl.certificate_authorities: "certs/ca/ca.crt"
+      xpack.security.transport.ssl.verification_mode: "certificate"
+      xpack.license.self_generated.type: "${LICENSE}"
     mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
@@ -340,7 +340,7 @@ services:
       xpack.monitoring.enabled: "false"
       ELASTIC_USER: "elastic"
       ELASTIC_PASSWORD: "${ELASTIC_PASSWORD}"
-#      ELASTIC_HOSTS: '["https://es01:9200","https://es02:9200","https://es03:9200"]'
+  #      ELASTIC_HOSTS: '["https://es01:9200","https://es02:9200","https://es03:9200"]'
 
   fleet-server:
     depends_on:
